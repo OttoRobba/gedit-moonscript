@@ -26,20 +26,21 @@
       <match>\\(\d\d?\d?|.)</match>
     </context>
 
-    <context id="self" style-ref="escape">
-      <match>((@\w*)|self)</match>
-    </context>
-
    <context id="number" style-ref="decimal">
       <match>\b(\d+)\b</match>
    </context>
 
    <context id="functionoperators" style-ref="function">
-      <match>(\->|!|=>|\w+(\()|\(|\)|\w+!)</match>
+      <match>(!|\w+\s?(\()|\(|\)|\w+!)</match>
    </context>
 
+    <context id="self" style-ref="escape">
+      <match>((@\w*)|self)</match>
+    </context>
+
+
    <context id="operators" style-ref="keyword">
-      <match>(==|~=|&gt;|&lt;|\-=|\+=|=|( \- )|(\-\b)|(\b\-))</match>
+      <match>(\->|=>|==|~=|&gt;|&lt;|\-=|=|( \- )|(\-\b)|(\b\-)|\+|\.\.)</match>
    </context>
 
     <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
