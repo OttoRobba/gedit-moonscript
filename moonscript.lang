@@ -35,7 +35,7 @@
    </context>
 
    <context id="functionoperators" style-ref="function">
-      <match>(\->|!|=>|\w+(\()|\(|\))</match>
+      <match>(\->|!|=>|\w+(\()|\(|\)|\w+!)</match>
    </context>
 
    <context id="operators" style-ref="keyword">
