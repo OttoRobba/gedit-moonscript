@@ -25,19 +25,16 @@
     <context id="moon-escape" style-ref="escape">
       <match>\\(\d\d?\d?|.)</match>
     </context>
-
+    <context id="self" style-ref="escape">
+      <match>((@\w*)|self)</match>
+    </context>
    <context id="number" style-ref="decimal">
       <match>\b(\d+)\b</match>
    </context>
 
    <context id="functionoperators" style-ref="function">
-      <match>(!|\w+\s?(\()|\(|\)|\w+!)</match>
+      <match>(\w+\s+?)(\()|\(|\)|\w+\s*?!</match>
    </context>
-
-    <context id="self" style-ref="escape">
-      <match>((@\w*)|self)</match>
-    </context>
-
 
    <context id="operators" style-ref="keyword">
       <match>(\->|=>|==|~=|&gt;|&lt;|\-=|=|( \- )|(\-\b)|(\b\-)|\+|\.\.)</match>
@@ -62,9 +59,13 @@
     <context id="keywords" style-ref="keyword">
       <keyword>and</keyword>
       <keyword>break</keyword>
+      <keyword>class</keyword>
+      <keyword>continue</keyword>
       <keyword>do</keyword>
       <keyword>else</keyword>
       <keyword>elseif</keyword>
+      <keyword>export</keyword>
+      <keyword>extend</keyword>
       <keyword>for</keyword>
       <keyword>function</keyword>
       <keyword>if</keyword>
@@ -73,41 +74,36 @@
       <keyword>or</keyword>
       <keyword>repeat</keyword>
       <keyword>return</keyword>
+      <keyword>switch</keyword>
       <keyword>then</keyword>
       <keyword>unless</keyword>
-      <keyword>continue</keyword>
-      <keyword>switch</keyword>
       <keyword>until</keyword>
-      <keyword>while</keyword>
       <keyword>when</keyword>
-      <keyword>class</keyword>
-      <keyword>extend</keyword>
-      <keyword>export</keyword>
+      <keyword>while</keyword>
     </context>
 
     <context id="functions" style-ref="function">
       <keyword>assert</keyword>
-      <keyword>collectgarbage</keyword>
-      <keyword>dofile</keyword>
-      <keyword>copy</keyword>
-      <keyword>is_object</keyword>
       <keyword>bind_methods</keyword>
-      <keyword>mixin</keyword>
-      <keyword>mixin_object</keyword>
-      <keyword>mixin_table</keyword>
-      <keyword>fold</keyword>
-      <keyword>p</keyword>
-      <keyword>run_with_scope</keyword>
-      <keyword>defaultbl</keyword>
+      <keyword>collectgarbage</keyword>
+      <keyword>copy</keyword>
       <keyword>debug.upvalue</keyword>
+      <keyword>defaultbl</keyword>
+      <keyword>dofile</keyword>
+      <keyword>fold</keyword>
+      <keyword>gcinfo</keyword>
       <keyword>getfenv</keyword>
       <keyword>getmetatable</keyword>
-      <keyword>gcinfo</keyword>
       <keyword>ipairs</keyword>
+      <keyword>is_object</keyword>
       <keyword>loadfile</keyword>
       <keyword>loadlib</keyword>
       <keyword>loadstring</keyword>
+      <keyword>mixin_object</keyword>
+      <keyword>mixin_table</keyword>
+      <keyword>mixin</keyword>
       <keyword>next</keyword>
+      <keyword>p</keyword>
       <keyword>pairs</keyword>
       <keyword>pcall</keyword>
       <keyword>print</keyword>
@@ -115,6 +111,7 @@
       <keyword>rawget</keyword>
       <keyword>rawset</keyword>
       <keyword>require</keyword>
+      <keyword>run_with_scope</keyword>
       <keyword>setfenv</keyword>
       <keyword>setmetatable</keyword>
       <keyword>tonumber</keyword>
@@ -154,5 +151,5 @@
       </include>
     </context>
 
-  </definitions>
+</definitions>
 </language>
