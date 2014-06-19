@@ -33,7 +33,7 @@
    </context>
 
    <context id="functionoperators" style-ref="function">
-      <match>(\w+\s+?)(\()|\(|\)|\w+\s*?!</match>
+      <match>(\w+\s+?)(\()|\(|\)|\w*\s*?!</match>
    </context>
 
    <context id="operators" style-ref="keyword">
