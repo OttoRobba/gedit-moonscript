@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="moon" _name="Moonscript" version="2.0" _section="Scripts">
+  <metadata>
+    <property name="mimetypes">text/x-moon</property>
+    <property name="globs">*.moon</property>
+    <property name="line-comment-start">--</property>
+    <property name="block-comment-start">--[[</property>
+    <property name="block-comment-end">]]</property>
+  </metadata>
+
+  <styles>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="string" _name="String" map-to="def:string"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
+    <style id="operator" _name="Operator" map-to="def:operator"/>
+    <style id="escape" _name="Escaped Character" map-to="def:special-char"/>
+    <style id="reserved" _name="Reserved Identifier" map-to="def:keyword"/>
+    <style id="function" _name="Function" map-to="def:function"/>
+    <style id="nil-value" _name="Nil Constant" map-to="def:special-constant"/>
+    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
+  </styles>
+
+  <definitions>
+    <context id="moon-escape" style-ref="escape">
+      <match>\\(\d\d?\d?|.)</match>
+    </context>
+
+    <context id="self" style-ref="escape">
+      <match>((@\w*)|self)</match>
+    </context>
+
+   <context id="number" style-ref="decimal">
+      <match>\b(\d+)\b</match>
+   </context>
+
+   <context id="functionoperators" style-ref="function">
+      <match>(\->|!|=>|(\w+((\(.*?\))|!))|\(|\))</match>
+   </context>
+
+   <context id="operators" style-ref="keyword">
+      <match>(==|~=|&gt;|&lt;|\-=|\+=|=|( \- )|(\-\b)|(\b\-))</match>
+   </context>
+
+
+
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+      <start>["']</start>
+      <end>\%{0@start}</end>
+      <include>
+        <context ref="moon-escape"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+      <start>--</start>
+      <include>
+<context ref="def:in-comment"/>
+      </include>
+    </context>
+
+    <context id="keywords" style-ref="keyword">
+      <keyword>and</keyword>
+      <keyword>break</keyword>
+      <keyword>do</keyword>
+      <keyword>else</keyword>
+      <keyword>elseif</keyword>
+      <keyword>for</keyword>
+      <keyword>function</keyword>
+      <keyword>if</keyword>
+      <keyword>in</keyword>
+      <keyword>local</keyword>
+      <keyword>not</keyword>
+      <keyword>or</keyword>
+      <keyword>repeat</keyword>
+      <keyword>return</keyword>
+      <keyword>then</keyword>
+      <keyword>unless</keyword>
+      <keyword>until</keyword>
+      <keyword>while</keyword>
+    </context>
+
+    <context id="functions" style-ref="function">
+      <keyword>assert</keyword>
+      <keyword>collectgarbage</keyword>
+      <keyword>dofile</keyword>
+      <keyword>error</keyword>
+      <keyword>getfenv</keyword>
+      <keyword>getmetatable</keyword>
+      <keyword>gcinfo</keyword>
+      <keyword>ipairs</keyword>
+      <keyword>loadfile</keyword>
+      <keyword>loadlib</keyword>
+      <keyword>loadstring</keyword>
+      <keyword>next</keyword>
+      <keyword>pairs</keyword>
+      <keyword>pcall</keyword>
+      <keyword>print</keyword>
+      <keyword>rawequal</keyword>
+      <keyword>rawget</keyword>
+      <keyword>rawset</keyword>
+      <keyword>require</keyword>
+      <keyword>setfenv</keyword>
+      <keyword>setmetatable</keyword>
+      <keyword>tonumber</keyword>
+      <keyword>tostring</keyword>
+      <keyword>type</keyword>
+      <keyword>unpack</keyword>
+      <keyword>xpcall</keyword>
+    </context>
+
+    <context id="moon-reserved" style-ref="reserved">
+      <keyword>_[A-Z][A-Za-z0-9_]*</keyword>
+    </context>
+
+    <context id="nil-value" style-ref="nil-value">
+       <keyword>nil</keyword>
+    </context>
+
+    <context id="boolean" style-ref="boolean">
+       <keyword>false</keyword>
+       <keyword>true</keyword>
+    </context>
+
+    <context id="moon" class="no-spell-check">
+      <include>
+        <context ref="def:shebang"/>
+        <context ref="string"/>
+        <context ref="number"/>
+        <context ref="self"/>
+        <context ref="functionoperators"/>
+        <context ref="operators"/>
+        <context ref="line-comment"/>
+        <context ref="keywords"/>
+        <context ref="functions"/>
+        <context ref="moon-reserved"/>
+        <context ref="nil-value"/>
+        <context ref="boolean"/>
+      </include>
+    </context>
+
+  </definitions>
+</language>
