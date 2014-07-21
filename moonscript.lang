@@ -55,14 +55,13 @@
       <match>(@\w*(?!.*(\->|=>|\(|!|"|'))|self)</match>
     </context>
 
-
-	 <context id="table" style-ref="table">
+    <context id="table" style-ref="table">
       <match>(\{|\}|\\|\.)</match>
     </context>
 
-  <context id="table-key" style-ref="table-key">
+    <context id="table-key" style-ref="table-key">
       <match>([A-Za-z_@]\w*:)</match>
-  </context>
+    </context>
 
    <context id="number" style-ref="decimal">
       <match>\b(\d+)\b</match>
