@@ -33,6 +33,7 @@
   <styles>
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="string" _name="String" map-to="def:string"/>
+    <style id="class" _name="Class" map-to="def:identifier"/>
     <style id="table" _name="Table" map-to="def:type"/>
     <style id="table-key" _name="Table Key" map-to="def:identifier"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
@@ -56,7 +57,7 @@
 
 
 	 <context id="table" style-ref="table">
-      <match>(\{|\})</match>
+      <match>(\{|\}|\\|\.)</match>
     </context>
 
   <context id="table-key" style-ref="table-key">
@@ -67,15 +68,19 @@
       <match>\b(\d+)\b</match>
    </context>
 
+   <context id="class" style-ref="class">
+      <match>\b(@?[A-Z]\w*)\b</match>
+   </context>
+
    <context id="function-operations" style-ref="function">
-      <match>((([@A-Za-z_]?\w+)|(\[("?|'?(?:.+)"?|'?)\]))(?=(\()|\s?"|\s?'|!|\s?{|\(|(\s*=\s*.*(\-|=)>)))|\(|\)|!</match>
+      <match>(([A-Za-z_@]+|\[.*\])((?=[^\S\r\n]*(=|:)[^\S\r\n]*(\(.*\))?[^\S\r\n]*(\-|=)>)|(?=[^\S\r\n]*{|!|[^\S\r\n]*\(|[^\S\r\n]*"|\s*')))|\(|\)|!</match>
    </context>
 
    <context id="operators" style-ref="keyword">
-      <match>(!=|\-&gt;|=&lt;|==|~=|&gt;|&lt;|\-=|=|( \- )|(\-\b)|(\b\-)|\+|\.\.|:|\\)</match>
+      <match>(!=|\-&gt;|=&lt;|==|~=|&gt;|&lt;|\-=|=|( \- )|(\-\b)|(\b\-)|\+|\.\.|:)</match>
    </context>
 
-    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+    <context id="string" style-ref="string" end-at-line-end="false" class="string" class-disabled="no-spell-check">
       <start>["']</start>
       <end>\%{0@start}</end>
       <include>
@@ -174,6 +179,7 @@
         <context ref="string"/>
         <context ref="number"/>
         <context ref="self"/>
+        <context ref="class"/>
         <context ref="table"/>
         <context ref="table-key"/>
         <context ref="function-operations"/>
