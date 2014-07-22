@@ -3,7 +3,7 @@
 
  This file is part of GtkSourceView
 
- Authors:  Otto Robba
+ Author:  Otto Robba
  Copyright (C) 2014 Otto Robba <ottorobba@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
@@ -48,7 +48,7 @@
 
   <definitions>
     <context id="moon-escape" style-ref="escape">
-      <match>\\(\d\d?\d?|.)</match>
+      <match>(\\(\d\d?\d?|.))|#{.*}</match>
     </context>
 
     <context id="self" style-ref="escape">
